@@ -10,6 +10,9 @@ public class HomePage extends PageObject {
     @FindBy(css = "#docsearch")
     private WebElement searchButton;
 
+    @FindBy(css = "#docsearch-input")
+    private WebElement searchInput;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -24,4 +27,9 @@ public class HomePage extends PageObject {
         searchButton.click();
         return this;
     }
+    public HomePage enterText() {
+        searchInput.sendKeys("Remote");
+        return this;
+    }
+
 }
