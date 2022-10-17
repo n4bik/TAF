@@ -10,6 +10,6 @@ public class FirstTest extends BaseTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.openHomePage();
         homePage.clickSearchButton();
-        homePage.enterText();
+        homePage.enterText("Remote");
     }
 }

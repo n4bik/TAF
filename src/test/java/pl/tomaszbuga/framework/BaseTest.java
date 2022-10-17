@@ -9,26 +9,26 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class BaseTest {
-    private WebDriver driver;
+    private static WebDriver driver;
     protected static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 
     @BeforeMethod(alwaysRun = true)
-    public void setupWebDriver() {
+    public static void setupWebDriver() {
         setupChromeDriver();
     }
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
     }
 
-    private void setupChromeDriver() {
+    private static void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
-    protected WebDriver getDriver() {
+    protected static WebDriver getDriver() {
         if (driver != null)
             return driver;
 
