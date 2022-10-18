@@ -1,11 +1,9 @@
 package pl.tomaszbuga.autohero;
 
-public class Car {
-    String title;
-    String price;
-
-    public Car(String title, String price) {
-        this.title = title;
-        this.price = price;
-    }
+public record Car(String title,
+                  String price,
+                  String year,
+                  String fuelType,
+                  String mileage,
+                  String gearType) {
 }
