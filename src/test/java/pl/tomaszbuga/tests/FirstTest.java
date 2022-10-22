@@ -13,6 +13,7 @@ public class FirstTest extends BaseTest {
     @BeforeMethod
     public void beforeSetup() {
         seleniumTrainingPage = new SeleniumTrainingPage(getDriver());
+        seleniumTrainingPage.openPage();
     }
 
     @Test()
@@ -36,6 +37,16 @@ public class FirstTest extends BaseTest {
         Assert.assertEquals(inputValueAfterClear, "");
     }
 
+    @Test()
+    public void enterTextToTextareaInputTest() {
+        // Assign
+        String expectedText = "Jakiś inny tekst, który wpisaliśmy";
+        // Act
+        String textFromTextInput = fillTextareaAndGetInputValue(expectedText);
+        // Assert
+        Assert.assertEquals(textFromTextInput, expectedText);
+    }
+
     private String getTextAfterClear() {
         return seleniumTrainingPage
                 .clearTextInput()
@@ -44,8 +55,13 @@ public class FirstTest extends BaseTest {
 
     private String enterTextAndGetInputValue(String expectedText) {
         return seleniumTrainingPage
-                .openPage()
                 .enterTextToTextInput(expectedText)
                 .getTextFromTextInput();
+    }
+
+    private String fillTextareaAndGetInputValue(String expectedText) {
+        return seleniumTrainingPage
+                .enterTextToTextareaInput(expectedText)
+                .getTextFromTextareaInput();
     }
 }

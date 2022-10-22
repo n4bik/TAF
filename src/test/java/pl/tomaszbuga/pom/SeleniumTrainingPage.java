@@ -13,6 +13,9 @@ public class SeleniumTrainingPage extends PageObject {
     @FindBy(css = "#my-text-id")
     private WebElement textInput;
 
+    @FindBy(css = "[name='my-textarea']")
+    private WebElement textareaInput;
+
     public SeleniumTrainingPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -24,14 +27,21 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public SeleniumTrainingPage enterTextToTextInput(String text) {
-        textInput.sendKeys(text);
+        enterTextToInput(text, textInput);
+        return this;
+    }
+
+    public SeleniumTrainingPage enterTextToTextareaInput(String text) {
+        enterTextToInput(text, textareaInput);
         return this;
     }
 
     public String getTextFromTextInput() {
-        // .getAttribute("value"), bo wartośc wpisana w input
-        // nie jest dostępna do pobrania przez .getText()
-        return textInput.getAttribute("value");
+        return getTextFromInput(textInput);
+    }
+
+    public String getTextFromTextareaInput() {
+        return getTextFromInput(textareaInput);
     }
 
     public SeleniumTrainingPage clearTextInput() {

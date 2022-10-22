@@ -28,4 +28,16 @@ public abstract class PageObject {
         By elementByLocator = getByFromWebElement(element);
         wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));
     }
+
+    protected void enterTextToInput(String text, WebElement element) {
+        waitUntilElementIsClickable(element);
+        element.sendKeys(text);
+    }
+
+    protected String getTextFromInput(WebElement element) {
+        waitUntilElementIsVisible(element);
+        // .getAttribute("value"), bo wartośc wpisana w input
+        // nie jest dostępna do pobrania przez .getText()
+        return element.getAttribute("value");
+    }
 }
