@@ -40,4 +40,10 @@ public abstract class PageObject {
         // nie jest dostępna do pobrania przez .getText()
         return element.getAttribute("value");
     }
+    // HomeworkTest 22/10/22 ----------------------------------
+    protected boolean getPasswordAttributeType(WebElement element){
+        waitUntilElementIsVisible(element);
+        return element.getAttribute("type").equals("password");
+    }
+    // ------------------------------------------------------------
 }

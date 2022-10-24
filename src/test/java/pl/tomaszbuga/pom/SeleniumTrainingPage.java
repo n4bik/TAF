@@ -16,6 +16,9 @@ public class SeleniumTrainingPage extends PageObject {
     @FindBy(css = "[name='my-textarea']")
     private WebElement textareaInput;
 
+    @FindBy(css = "[name='my-password']")
+    private WebElement passwordInput;
+
     public SeleniumTrainingPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -48,4 +51,18 @@ public class SeleniumTrainingPage extends PageObject {
         textInput.clear();
         return this;
     }
+    // HomeworkTest 22/10/22 ----------------------------------
+    public SeleniumTrainingPage enterPasswordToInput(String text) {
+        enterTextToInput(text, passwordInput);
+        return this;
+    }
+
+    public String getPasswordFromInput() {
+        return getTextFromInput(passwordInput);
+    }
+
+    public boolean getPasswordAttribute(){
+        return getPasswordAttributeType(passwordInput);
+    }
+    // ---------------------------------------------------------
 }

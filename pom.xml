@@ -7,6 +7,18 @@
     <groupId>pl.tomaszbuga</groupId>
     <artifactId>test-automation-framework</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>13</source>
+                    <target>13</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <testng.version>7.4.0</testng.version>
@@ -14,8 +26,8 @@
         <webdrivermanager.version>5.0.3</webdrivermanager.version>
         <log4j2.version>2.14.1</log4j2.version>
         <commons.lang3.version>3.11</commons.lang3.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
 
     <dependencies>
