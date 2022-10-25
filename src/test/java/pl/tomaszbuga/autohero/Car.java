@@ -5,5 +5,7 @@ public record Car(String title,
                   String year,
                   String fuelType,
                   String mileage,
-                  String gearType) {
+                  String gearType,
+
+                  String carPageUrl) {
 }

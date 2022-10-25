@@ -12,11 +12,13 @@ import pl.tomaszbuga.framework.PageObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.tomaszbuga.pom.AutoHeroCarFilter.filterCarsByMake;
+import static pl.tomaszbuga.pom.AutoHeroCarFilter.filterCarsByPriceRange;
 import static pl.tomaszbuga.utils.ScrollUtil.scrollByPixels;
 
 public class AutoHeroCarsPage extends PageObject {
     String
-            baseUrl = "https://www.autohero.com/pl/search/?fuelType=hybrid&fuelType=elektro",
+            baseUrl = "https://www.autohero.com/at/search/?fuelType=hybrid&fuelType=elektro",
             carTitleSelector = "[data-qa-selector='title']",
             carPriceSelector = "[data-qa-selector='price']",
             carYearSelector = "[data-qa-selector='spec-year']",
@@ -60,7 +62,7 @@ public class AutoHeroCarsPage extends PageObject {
         return this;
     }
 
-    public AutoHeroCarsPage getCars() throws InterruptedException {
+    public AutoHeroCarsPage getCars() {
         int carsCount = getCarsCount();
         int counter = 0;
 
@@ -68,7 +70,6 @@ public class AutoHeroCarsPage extends PageObject {
             WebElement carCard = getCarCard(counter, carsCount);
             counter = addCarToListOrSubstractFromCounter(counter, carCard);
             scrollToNextCar(counter);
-            Thread.sleep(150); // NIE WYKORZYSTYWAC W AUTOMATYZACJI TESTOW!!!
             counter++;
         }
 
@@ -111,8 +112,9 @@ public class AutoHeroCarsPage extends PageObject {
         String fuelType = getCarFuelType(carCard);
         String mileage = getCarMileage(carCard);
         String gearType = getCarGearType(carCard);
+        String carPageUrl = getCarPageUrl(carCard);
 
-        return new Car(title, price, year, fuelType, mileage, gearType);
+        return new Car(title, price, year, fuelType, mileage, gearType, carPageUrl);
     }
 
     private void scrollToNextCar(int counter) {
@@ -154,31 +156,48 @@ public class AutoHeroCarsPage extends PageObject {
         return carCard.findElement(By.cssSelector(carGearTypeSelector)).getText();
     }
 
+    private String getCarPageUrl(WebElement carCard) {
+        return carCard.findElement(By.tagName("a")).getAttribute("href");
+    }
+
     private void displayCarsList() {
-        for (Car car : cars) {
-            String formattedCarDisplay = """
-                    =================
-                    MARKA / MODEL: %s
-                    CENA: %s
-                                        
-                    PRZEBIEG: %s
-                    ROK PRODUKCJI: %s
-                    RODZAJ PALIWA: %s
-                    SKRZYNIA BIEGÓW: %s
-                    =================
-                                        
-                    """.formatted(
-                    car.title(),
-                    car.price(),
-                    car.mileage(),
-                    car.year(),
-                    car.fuelType(),
-                    car.gearType());
+        List<Car> carsFiltered = new ArrayList<>();
 
-            System.out.println(formattedCarDisplay);
-        }
+        cars.stream()
+                .filter(car -> filterCarsByPriceRange(0, 50000, car))
+                .filter(car -> filterCarsByMake(Make.TOYOTA, car))
+                .forEach(car -> {
+                    displayCarDetails(car);
+                    carsFiltered.add(car);
+                });
 
-        System.out.println("ŁĄCZNIE SAMOCHODÓW: " + cars.size());
+        System.out.println("ŁĄCZNIE SAMOCHODÓW: " + carsFiltered.size());
+    }
+
+    private void displayCarDetails(Car car) {
+        String formattedCarDisplay = """
+                =================
+                MARKA / MODEL: %s
+                CENA: %s
+                                    
+                PRZEBIEG: %s
+                ROK PRODUKCJI: %s
+                RODZAJ PALIWA: %s
+                SKRZYNIA BIEGÓW: %s
+                =================
+                %s
+                =================
+                                    
+                """.formatted(
+                car.title(),
+                car.price(),
+                car.mileage(),
+                car.year(),
+                car.fuelType(),
+                car.gearType(),
+                car.carPageUrl());
+
+        System.out.println(formattedCarDisplay);
     }
 
     private void clickOnMoreActionsButton() {

@@ -4,7 +4,7 @@ import pl.tomaszbuga.framework.BaseTest;
 import pl.tomaszbuga.pom.AutoHeroCarsPage;
 
 public class AutoHero extends BaseTest {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         AutoHeroCarsPage autoHeroCarsPage = new AutoHeroCarsPage(getDriver());
 
         autoHeroCarsPage
