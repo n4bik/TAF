@@ -1,11 +1,13 @@
 package pl.tomaszbuga.pom;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import pl.tomaszbuga.framework.PageObject;
+
+import java.util.NoSuchElementException;
 
 public class SeleniumTrainingPage extends PageObject {
     private String baseUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
@@ -15,6 +17,9 @@ public class SeleniumTrainingPage extends PageObject {
 
     @FindBy(css = "[name='my-textarea']")
     private WebElement textareaInput;
+
+    @FindBy(css = "[name='my-select']")
+    private WebElement dropdownSelect;
 
     public SeleniumTrainingPage(WebDriver driver) {
         this.driver = driver;
@@ -41,11 +46,31 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public String getTextFromTextareaInput() {
+        LOGGER.info("Getting text from Textarea input");
         return getTextFromInput(textareaInput);
     }
 
     public SeleniumTrainingPage clearTextInput() {
+        LOGGER.info("Clearing text input");
         textInput.clear();
         return this;
+    }
+
+    public SeleniumTrainingPage selectValueFromDropdown(String valueToSelect) {
+        Select select = new Select(dropdownSelect);
+
+        LOGGER.info("Searching for '" + valueToSelect + "' in dropdown");
+        try {
+            select.selectByVisibleText(valueToSelect);
+        } catch (NoSuchElementException ex) {
+            LOGGER.warn("There is no value '" + valueToSelect + "' in dropdown");
+        }
+
+        return this;
+    }
+
+    public String getSelectedValueFromDropdown() {
+        Select select = new Select(dropdownSelect);
+        return select.getFirstSelectedOption().getText();
     }
 }

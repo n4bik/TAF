@@ -17,13 +17,13 @@ public abstract class PageObject {
     protected static final Logger LOGGER = LogManager.getLogger(PageObject.class);
     protected WebDriver driver;
 
-    protected void waitUntilElementIsVisible(WebElement element) {
+    protected final void waitUntilElementIsVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         By elementByLocator = getByFromWebElement(element);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementByLocator));
     }
 
-    protected void waitUntilElementIsClickable(WebElement element) {
+    protected final void waitUntilElementIsClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         By elementByLocator = getByFromWebElement(element);
         wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));

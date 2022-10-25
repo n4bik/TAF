@@ -47,6 +47,17 @@ public class FirstTest extends BaseTest {
         Assert.assertEquals(textFromTextInput, expectedText);
     }
 
+    @Test()
+    public void selectValueFromDropdownTest() {
+        String expectedValue = "Two";
+        String selectedValueFromDropdown;
+
+        seleniumTrainingPage.selectValueFromDropdown("Two");
+        selectedValueFromDropdown = seleniumTrainingPage.getSelectedValueFromDropdown();
+
+        Assert.assertEquals(selectedValueFromDropdown, expectedValue);
+    }
+
     private String getTextAfterClear() {
         return seleniumTrainingPage
                 .clearTextInput()
