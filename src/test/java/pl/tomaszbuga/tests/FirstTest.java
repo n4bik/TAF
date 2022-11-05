@@ -1,13 +1,17 @@
 package pl.tomaszbuga.tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.tomaszbuga.framework.BaseTest;
 import pl.tomaszbuga.pom.SeleniumTrainingPage;
 
-public class FirstTest extends BaseTest {
+import static org.openqa.selenium.support.locators.RelativeLocator.RelativeBy;
 
+public class FirstTest extends BaseTest {
     SeleniumTrainingPage seleniumTrainingPage;
 
     @BeforeMethod
@@ -56,6 +60,22 @@ public class FirstTest extends BaseTest {
         selectedValueFromDropdown = seleniumTrainingPage.getSelectedValueFromDropdown();
 
         Assert.assertEquals(selectedValueFromDropdown, expectedValue);
+    }
+
+    @Test()
+    public void relativeSelectors() {
+        getDriver().get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+        getDriver().manage().window().maximize();
+
+        WebElement baseElement = getDriver().findElement(By.name("my-datalist"));
+        RelativeBy relativeBy = RelativeLocator.with(By.tagName("input"));
+        WebElement leftSideElement = getDriver().findElement(relativeBy.toLeftOf(baseElement));
+        WebElement rightSideElement = getDriver().findElement(relativeBy.toRightOf(baseElement));
+        WebElement belowElement = getDriver().findElement(relativeBy.below(baseElement));
+
+        System.out.println(leftSideElement.getAttribute("name"));
+        System.out.println(rightSideElement.getAttribute("name"));
+        System.out.println(belowElement.getAttribute("name"));
     }
 
     private String getTextAfterClear() {

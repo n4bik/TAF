@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import pl.tomaszbuga.framework.PageObject;
 
 import java.util.NoSuchElementException;
-
 public class SeleniumTrainingPage extends PageObject {
     private String baseUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
 
@@ -42,6 +41,7 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public String getTextFromTextInput() {
+        LOGGER.info("Getting text from Text input");
         return getTextFromInput(textInput);
     }
 
@@ -51,7 +51,7 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public SeleniumTrainingPage clearTextInput() {
-        LOGGER.info("Clearing text input");
+        LOGGER.info("Clearing Text input");
         textInput.clear();
         return this;
     }
@@ -70,6 +70,7 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public String getSelectedValueFromDropdown() {
+        LOGGER.info("Getting value from dropdown");
         Select select = new Select(dropdownSelect);
         return select.getFirstSelectedOption().getText();
     }

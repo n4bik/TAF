@@ -16,7 +16,7 @@ public class HomePage extends PageObject {
     }
 
     public HomePage openHomePage() {
-        driver.get("http://www.selenium.dev");
+        driver.get("https://www.selenium.dev");
         return this;
     }
 
