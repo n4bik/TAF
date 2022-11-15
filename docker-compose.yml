@@ -10,3 +10,9 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_PASSWORD=password
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
