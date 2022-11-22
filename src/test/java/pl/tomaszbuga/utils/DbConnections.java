@@ -12,7 +12,7 @@ public class DbConnections {
         props.setProperty("user", "postgres");
         props.setProperty("password", "password");
 
-        firstSQL(props);
+        resultSetTest();
     }
 
     public static void firstSQL(Properties props) throws SQLException {
@@ -25,11 +25,11 @@ public class DbConnections {
         }
     }
 
-    public static void resultSetTest(Properties props) throws SQLException {
+    public static void resultSetTest() throws SQLException {
         String sql = "SELECT id, name FROM exhibits";
         var idToNameMap = new HashMap<Integer, String>();
 
-        try (Connection conn = DriverManager.getConnection(url, props);
+        try (Connection conn = DriverManager.getConnection(url, "postgres", "password");
              var ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {

@@ -1,0 +1,86 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": {
+        "title": "some title",
+        "description": "some description",
+        "tags": [
+          "tag1",
+          "tag2"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": {
+        "title": "some title 2",
+        "description": "some description 2",
+        "tags": [
+          "tag1 - 2",
+          "tag2 - 2"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 3,
+      "body": {
+        "title": "New Test Comment Body",
+        "description": "New Test Description",
+        "tags": [
+          "Test Tag 1",
+          "Test Tag 2"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 4,
+      "body": {
+        "title": "some title 2",
+        "description": "some description 2",
+        "tags": [
+          "tag1 - 2",
+          "tag2 - 2"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 5,
+      "body": {
+        "title": "New Test Comment Body 5",
+        "description": "New Test Description 5",
+        "tags": [
+          "Test Tag 15",
+          "Test Tag 25"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 6,
+      "body": {
+        "title": "New Test Comment Body 6",
+        "description": "New Test Description 6",
+        "tags": [
+          "Test Tag 16",
+          "Test Tag 26"
+        ]
+      },
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
