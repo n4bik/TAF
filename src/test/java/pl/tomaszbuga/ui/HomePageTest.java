@@ -1,21 +1,25 @@
-package pl.tomaszbuga.tests;
+package pl.tomaszbuga.ui;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pl.tomaszbuga.framework.BaseTest;
-import pl.tomaszbuga.pom.HomePage;
+import pl.tomaszbuga.ui.framework.BaseTest;
+import pl.tomaszbuga.ui.pom.HomePage;
 
 public class HomePageTest extends BaseTest {
     HomePage homePage;
 
+    @BeforeMethod
+    private void setup() {
+        homePage = new HomePage(getDriver());
+    }
+
     @Test(groups = "Regression", description = "Verify that home page opens")
     void openHomePageTest() {
-        homePage = new HomePage(getDriver());
         homePage.openHomePage();
     }
 
     @Test(groups = {"Smoke", "Regression"}, description = "Verify user can click a search button")
     void clickSearchButtonTest() {
-        homePage = new HomePage(getDriver());
         homePage.openHomePage();
         homePage.clickSearchButton();
     }

@@ -1,10 +1,10 @@
-package pl.tomaszbuga.pom;
+package pl.tomaszbuga.ui.pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pl.tomaszbuga.framework.PageObject;
+import pl.tomaszbuga.ui.framework.PageObject;
 
 public class LoginPage extends PageObject {
     private String baseUrl = "https://www.autohero.com/pl/search/";

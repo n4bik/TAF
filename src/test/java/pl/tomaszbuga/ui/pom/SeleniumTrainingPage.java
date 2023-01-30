@@ -1,13 +1,15 @@
-package pl.tomaszbuga.pom;
+package pl.tomaszbuga.ui.pom;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import pl.tomaszbuga.framework.PageObject;
+import pl.tomaszbuga.ui.framework.PageObject;
 
 import java.util.NoSuchElementException;
+@Log4j2
 public class SeleniumTrainingPage extends PageObject {
     private String baseUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
 
@@ -41,17 +43,17 @@ public class SeleniumTrainingPage extends PageObject {
     }
 
     public String getTextFromTextInput() {
-        LOGGER.info("Getting text from Text input");
+        log.info("Getting text from Text input");
         return getTextFromInput(textInput);
     }
 
     public String getTextFromTextareaInput() {
-        LOGGER.info("Getting text from Textarea input");
+        log.info("Getting text from Textarea input");
         return getTextFromInput(textareaInput);
     }
 
     public SeleniumTrainingPage clearTextInput() {
-        LOGGER.info("Clearing Text input");
+        log.info("Clearing Text input");
         textInput.clear();
         return this;
     }
@@ -59,18 +61,18 @@ public class SeleniumTrainingPage extends PageObject {
     public SeleniumTrainingPage selectValueFromDropdown(String valueToSelect) {
         Select select = new Select(dropdownSelect);
 
-        LOGGER.info("Searching for '" + valueToSelect + "' in dropdown");
+        log.info("Searching for '" + valueToSelect + "' in dropdown");
         try {
             select.selectByVisibleText(valueToSelect);
         } catch (NoSuchElementException ex) {
-            LOGGER.warn("There is no value '" + valueToSelect + "' in dropdown");
+            log.warn("There is no value '" + valueToSelect + "' in dropdown");
         }
 
         return this;
     }
 
     public String getSelectedValueFromDropdown() {
-        LOGGER.info("Getting value from dropdown");
+        log.info("Getting value from dropdown");
         Select select = new Select(dropdownSelect);
         return select.getFirstSelectedOption().getText();
     }

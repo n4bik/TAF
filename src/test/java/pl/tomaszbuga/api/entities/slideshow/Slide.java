@@ -1,4 +1,4 @@
-package pl.tomaszbuga.entities.slideshow;
+package pl.tomaszbuga.api.entities.slideshow;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;

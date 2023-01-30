@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "taf"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": {
+        "title": "some title",
+        "description": "some description",
+        "tags": [
+          "tag1",
+          "tag2"
+        ]
+      },
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": {
+        "title": "some title 2",
+        "description": "some description 2",
+        "tags": [
+          "tag1",
+          "tag2"
+        ]
+      },
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "taf"
+  }
+}

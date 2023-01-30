@@ -1,21 +1,20 @@
-package pl.tomaszbuga.utils;
+package pl.tomaszbuga.ui.utils;
 
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Properties;
 
-public class DbConnections {
+public abstract class DbConnections {
     static String url = "jdbc:postgresql://localhost:5432/postgres";
 
-    public static void main(String[] args) throws SQLException {
+    private static void setup() {
         Properties props = new Properties();
         props.setProperty("user", "postgres");
         props.setProperty("password", "password");
-
-        resultSetTest();
     }
 
     public static void firstSQL(Properties props) throws SQLException {
+        setup();
         try (Connection conn = DriverManager.getConnection(url, props);
              PreparedStatement ps = conn.prepareStatement(
                      "SELECT name FROM exhibits");
@@ -26,6 +25,7 @@ public class DbConnections {
     }
 
     public static void resultSetTest() throws SQLException {
+        setup();
         String sql = "SELECT id, name FROM exhibits";
         var idToNameMap = new HashMap<Integer, String>();
 

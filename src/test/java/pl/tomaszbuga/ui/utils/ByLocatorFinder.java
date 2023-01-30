@@ -1,4 +1,4 @@
-package pl.tomaszbuga.utils;
+package pl.tomaszbuga.ui.utils;
 
 import com.google.common.base.CaseFormat;
 import org.openqa.selenium.By;

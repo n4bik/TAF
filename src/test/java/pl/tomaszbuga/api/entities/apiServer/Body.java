@@ -1,4 +1,4 @@
-package pl.tomaszbuga.entities.mockserver;
+package pl.tomaszbuga.api.entities.apiServer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

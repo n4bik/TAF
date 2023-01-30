@@ -2,7 +2,7 @@
 <Configuration>
     <Appenders>
         <Console name="Console">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level - %msg%n"/>
+            <PatternLayout disableAnsi="false" pattern="%highlight{[ %d{HH:mm:ss.SSS} %-5level] %msg%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=light green bold, DEBUG=green bold, TRACE=blue}"/>
         </Console>
     </Appenders>
     <Loggers>

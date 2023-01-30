@@ -1,16 +1,15 @@
-package pl.tomaszbuga.framework;
+package pl.tomaszbuga.ui.framework;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+@Log4j2
 public abstract class BaseTest {
     private WebDriver driver;
-    protected static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 
     @BeforeMethod(alwaysRun = true)
     public void setupWebDriver() {

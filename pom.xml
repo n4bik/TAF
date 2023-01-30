@@ -19,10 +19,15 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <defaultSuiteFiles>
-            ./ui-suite.xml,
-        </defaultSuiteFiles>
-        <suiteFile>${defaultSuiteFiles}</suiteFile>
+        <suiteFile>
+            full,
+        </suiteFile>
+        <suitesDirectory>
+            src/test/resources/suites/
+        </suitesDirectory>
+        <suiteFileLocation>
+            ${suitesDirectory}${suiteFile}-suite.xml
+        </suiteFileLocation>
     </properties>
 
     <dependencies>
@@ -94,7 +99,7 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteFile}</suiteXmlFile>
+                        <suiteXmlFile>${suiteFileLocation}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
