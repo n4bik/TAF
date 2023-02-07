@@ -44,24 +44,28 @@ public class LoginPage extends PageObject {
 
     @Step("Enter username")
     public LoginPage enterUsername() {
+        log.info("Enter username: " + username);
         enterTextToInput(usernameField, username);
         return this;
     }
 
     @Step("Click continue button")
     public LoginPage clickContinueButton() {
+        log.info("Click continue button");
         clickOnWebElement(continueButton);
         return this;
     }
 
     @Step("Enter password")
     public LoginPage enterPassword() {
+        log.info("Enter password: " + pass);
         enterTextToInput(passwordField, pass);
         return this;
     }
 
     @Step("Click login button")
     public DashboardPage clickLoginButton() {
+        log.info("Click login button");
         clickOnWebElement(loginButton);
         return new DashboardPage(driver);
     }

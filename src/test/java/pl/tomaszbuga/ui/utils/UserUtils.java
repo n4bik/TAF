@@ -4,6 +4,6 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UserUtils {
-    public static final String username = System.getenv("email");
-    public static final String pass = System.getenv("password");
+    public static final String username = System.getProperty("email");
+    public static final String pass = System.getProperty("password");
 }
