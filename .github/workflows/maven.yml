@@ -32,7 +32,9 @@ jobs:
             chmod +x ./scripts/InstallChrome.sh
             ./scripts/InstallChrome.sh
     - name: Build with Maven
-      run: mvn test -DsuiteFile=full -Demail="codebrainers.tbu@gmail.com" -Dpassword="testujemyE1337arnie()"
+      run: mvn clean install
+    - name: Run UI Test Suite
+      run: mvn test -DsuiteFile=ui -Demail="codebrainers.tbu@gmail.com" -Dpassword="testujemyE1337arnie()"
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
