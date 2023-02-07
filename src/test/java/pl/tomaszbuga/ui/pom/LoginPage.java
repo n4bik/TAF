@@ -1,45 +1,68 @@
 package pl.tomaszbuga.ui.pom;
 
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.tomaszbuga.ui.framework.PageObject;
 
+import static pl.tomaszbuga.ui.utils.UserUtils.pass;
+import static pl.tomaszbuga.ui.utils.UserUtils.username;
+
+@Log4j2
 public class LoginPage extends PageObject {
-    private String baseUrl = "https://www.autohero.com/pl/search/";
+    @FindBy(id = "googleButton")
+    private WebElement loginViaGoogleButton;
 
-    @FindBy(css = "[data-qa-selector='cookie-consent-configure']")
-    private WebElement cookieConsentButton;
+    @FindBy(id = "user")
+    private WebElement usernameField;
 
-    @FindBy(id = "transmissionFilter")
-    private WebElement transmissionFilter;
+    @FindBy(id = "login")
+    private WebElement continueButton;
 
-    @FindBy(css = "[data-qa-selector-value='automatic']")
-    private WebElement automaticField;
+    @FindBy(name = "password")
+    private WebElement passwordField;
 
-    @FindBy(xpath = "//h2[@data-qa-selector='title']")
-    private WebElement title;
+    @FindBy(id= "login-submit")
+    private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
+        String pageObjectName = this.getClass().getSimpleName();
+
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        driver.get(baseUrl);
+        isPageLoaded(pageObjectName, loginViaGoogleButton);
     }
-
-    public LoginPage fillFormAndClickSubmit() {
-        cookieConsentButton.click();
-        cookieConsentButton.click();
-        System.out.println(title.getText());
-        transmissionFilter.click();
-        automaticField.click();
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(title.getText());
+    @Step("Click login via Google button")
+    public LoginPage clickLoginViaGoogleButton() {
+        log.info("Click login via Google button");
+        clickOnWebElement(loginViaGoogleButton);
         return this;
     }
 
+    @Step("Enter username")
+    public LoginPage enterUsername() {
+        enterTextToInput(usernameField, username);
+        return this;
+    }
+
+    @Step("Click continue button")
+    public LoginPage clickContinueButton() {
+        clickOnWebElement(continueButton);
+        return this;
+    }
+
+    @Step("Enter password")
+    public LoginPage enterPassword() {
+        enterTextToInput(passwordField, pass);
+        return this;
+    }
+
+    @Step("Click login button")
+    public DashboardPage clickLoginButton() {
+        clickOnWebElement(loginButton);
+        return new DashboardPage(driver);
+    }
 }

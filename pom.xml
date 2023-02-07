@@ -15,12 +15,12 @@
         <log4j2.version>2.14.1</log4j2.version>
         <commons.lang3.version>3.11</commons.lang3.version>
         <postgresql.driver.version>42.3.1</postgresql.driver.version>
-        <aspectj.version>1.8.10</aspectj.version>
+        <aspectj.version>1.9.19</aspectj.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
         <suiteFile>
-            full,
+            full
         </suiteFile>
         <suitesDirectory>
             src/test/resources/suites/
@@ -53,16 +53,10 @@
             <version>${log4j2.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j2.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons.lang3.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>

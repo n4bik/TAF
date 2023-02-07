@@ -1,9 +1,11 @@
 package pl.tomaszbuga.ui.utils;
 
 import com.google.common.base.CaseFormat;
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+@UtilityClass
 public class ByLocatorFinder {
     public static By getByFromWebElement(WebElement element) {
         String elemStr = element.toString();
