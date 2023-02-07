@@ -32,7 +32,7 @@ jobs:
             chmod +x ./scripts/InstallChrome.sh
             ./scripts/InstallChrome.sh
     - name: Build with Maven
-      run: mvn clean install
+      run: mvn clean install -DskipTests
     - name: Run UI Test Suite
       run: mvn test -DsuiteFile=ui -Demail="codebrainers.tbu@gmail.com" -Dpassword="testujemyE1337arnie()"
 
