@@ -29,13 +29,13 @@ jobs:
         run: mvn package -DsuiteFile=ui -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
         continue-on-error: true
 
-      - name: Get Allure history
-        uses: actions/checkout@v2
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+#      - name: Get Allure history
+#        uses: actions/checkout@v2
+#        if: always()
+#        continue-on-error: true
+#        with:
+#          ref: gh-pages
+#          path: gh-pages
 
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
