@@ -25,11 +25,8 @@ jobs:
           chmod +x ./scripts/InstallChrome.sh
           ./scripts/InstallChrome.sh
 
-      - name: Build with Maven
-        run: mvn clean install -DskipTests
-
       - name: Run UI Test Suite
-        run: mvn test -DsuiteFile=ui -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
+        run: mvn package -DsuiteFile=ui -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
         continue-on-error: true
 
       - name: Get Allure history
