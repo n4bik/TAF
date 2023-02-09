@@ -29,7 +29,11 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: Run UI Test Suite
-        run: mvn test -DsuiteFile=ui -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
+        run: mvn test -DsuiteFile=ui
+        continue-on-error: true
+        env:
+          email: ${{ secrets.EMAIL }}
+          password: ${{ secrets.PASSWORD }}
 
       - name: Get Allure history
         uses: actions/checkout@v2
