@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       testSuite:
-        description: 'test suite'
+        description: 'Test suite'
         required: true
         default: 'ui'
         type: choice
@@ -16,6 +16,14 @@ on:
         - ui
         - api
         - full
+      testGroup:
+        description: 'Test group'
+        required: false
+        default: ''
+        type: choice
+        options:
+        - Regression
+        - Smoke
 
 jobs:
   build:
@@ -37,7 +45,7 @@ jobs:
           ./scripts/InstallChrome.sh
 
       - name: Run UI Test Suite
-        run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
+        run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
       - name: Get Allure history
