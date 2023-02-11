@@ -26,35 +26,35 @@ on:
         - Smoke
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Google Chrome
+        run: |
+          chmod +x ./scripts/InstallChrome.sh
+          ./scripts/InstallChrome.sh
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    
+    steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
-      - name: Install Google Chrome
-        run: |
-          chmod +x ./scripts/InstallChrome.sh
-          ./scripts/InstallChrome.sh
-  test:
-    needs: build
-    runs-on: ubuntu-latest
     
-    steps:
       - name: Run UI Test Suite
         run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
   report:
     if: ${{ always() }}
-    needs: [build, test]
+    needs: [setup, test]
     runs-on: ubuntu-latest
     
     steps:
