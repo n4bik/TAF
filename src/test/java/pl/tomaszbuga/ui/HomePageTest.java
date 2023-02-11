@@ -10,7 +10,7 @@ import pl.tomaszbuga.ui.pom.HomePage;
 public class HomePageTest extends BaseTest {
     private HomePage homePage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     private void setup() {
         homePage = new HomePage(getDriver());
         homePage.openHomePage();
