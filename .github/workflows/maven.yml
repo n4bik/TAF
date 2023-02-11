@@ -6,7 +6,8 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-    testSuite:
+    inputs:
+      testSuite:
         description: 'test suite'
         required: true
         default: 'ui'
