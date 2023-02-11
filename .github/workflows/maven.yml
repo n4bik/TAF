@@ -45,7 +45,12 @@ jobs:
           ./scripts/InstallChrome.sh
     
       - name: Run UI Test Suite
-        run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
+        run: |
+          mvn test 
+          -DsuiteFile=${{ inputs.testSuite }}
+          -Demail=${{ secrets.EMAIL }}
+          -Dpassword=${{ secrets.PASSWORD }}
+          -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
   report:
