@@ -44,6 +44,7 @@ jobs:
           chmod +x ./scripts/InstallChrome.sh
           ./scripts/InstallChrome.sh
   test:
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
@@ -52,6 +53,8 @@ jobs:
         continue-on-error: true
 
   report:
+    if: ${{ always() }}
+    needs: [build, test]
     runs-on: ubuntu-latest
     
     steps:
