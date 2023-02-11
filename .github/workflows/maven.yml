@@ -45,12 +45,11 @@ jobs:
           ./scripts/InstallChrome.sh
     
       - name: Run UI Test Suite
-        run: |
-          mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
+        run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
       - name: Get Allure history
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         if: always()
         continue-on-error: true
         with:
