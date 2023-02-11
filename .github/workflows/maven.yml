@@ -5,6 +5,16 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    testSuite:
+        description: 'test suite'
+        required: true
+        default: 'ui'
+        type: choice
+        options:
+        - ui
+        - api
+        - full
 
 jobs:
   build:
@@ -26,7 +36,7 @@ jobs:
           ./scripts/InstallChrome.sh
 
       - name: Run UI Test Suite
-        run: mvn clean test -DsuiteFile=ui -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
+        run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }}
         continue-on-error: true
 
       - name: Get Allure history
