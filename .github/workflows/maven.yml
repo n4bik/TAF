@@ -49,14 +49,8 @@ jobs:
           mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
-  report:
-    if: ${{ always() }}
-    needs: test
-    runs-on: ubuntu-latest
-    
-    steps:
       - name: Get Allure history
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: always()
         continue-on-error: true
         with:
