@@ -1,4 +1,4 @@
-name: Build project, run tests, and generate report
+name: build-test-report
 
 on:
   push:
@@ -43,11 +43,18 @@ jobs:
         run: |
           chmod +x ./scripts/InstallChrome.sh
           ./scripts/InstallChrome.sh
-
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Run UI Test Suite
         run: mvn clean test -DsuiteFile=${{ inputs.testSuite }} -Demail=${{ secrets.EMAIL }} -Dpassword=${{ secrets.PASSWORD }} -Dgroups=${{ inputs.testGroup }}
         continue-on-error: true
 
+  report:
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
