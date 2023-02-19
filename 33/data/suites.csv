@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Feb 19 16:42:08 GMT 2023","Sun Feb 19 16:42:10 GMT 2023","2155","Full Suite","UI","pl.tomaszbuga.ui.HomePageTest","pl.tomaszbuga.ui.HomePageTest","loginWithGoogleTest","loginWithGoogleTest","Verify that user can login via Google"
+"passed","Sun Feb 19 16:42:01 GMT 2023","Sun Feb 19 16:42:06 GMT 2023","4517","Full Suite","UI","pl.tomaszbuga.ui.HomePageTest","pl.tomaszbuga.ui.HomePageTest","loginWithCredentialsTest","loginWithCredentialsTest","Verify that user can login with username and password"
+"broken","Sun Feb 19 16:42:10 GMT 2023","Sun Feb 19 16:42:12 GMT 2023","2123","Full Suite","API","pl.tomaszbuga.api.ApiTest","pl.tomaszbuga.api.ApiTest","mockServerGet","mockServerGet",""
