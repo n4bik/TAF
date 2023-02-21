@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Feb 21 17:41:02 GMT 2023","Tue Feb 21 17:41:05 GMT 2023","2992","Full Suite","UI","pl.tomaszbuga.ui.HomePageTest","pl.tomaszbuga.ui.HomePageTest","loginWithCredentialsTest","loginWithCredentialsTest","Verify that user can login with username and password"
