@@ -1,0 +1,1 @@
+{"uuid":"e1df5880-e387-4d09-b0a2-177bdda7d86a","name":"pl.tomaszbuga.api.ApiTest.setup","children":["16a6c681-1d3f-4828-a958-7282ecc36486"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1677614426807,"stop":1677614426807}],"afters":[],"start":1677614426807,"stop":1677614426807}
