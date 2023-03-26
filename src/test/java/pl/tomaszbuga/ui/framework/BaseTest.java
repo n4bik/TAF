@@ -14,7 +14,7 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupWebDriver() {
-        setupChromeDriver();
+        setupDriver();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -22,7 +22,7 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    private void setupChromeDriver() {
+    private void setupDriver() {
         ChromeOptions options = new ChromeOptions();
         WebDriverManager.chromedriver().setup();
 
@@ -33,7 +33,8 @@ public abstract class BaseTest {
                 "--ignore-certificate-errors",
                 "--disable-extensions",
                 "--no-sandbox",
-                "--disable-dev-shm-usage"
+                "--disable-dev-shm-usage",
+                "--remote-allow-origins=*"
         );
 
         driver = new ChromeDriver(options);
