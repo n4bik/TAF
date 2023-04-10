@@ -10,7 +10,7 @@ import pl.tomaszbuga.ui.framework.PageObject;
 
 @Log4j2
 public class HomePage extends PageObject {
-    @FindBy(css = "[data-uuid='MJFtCCgVhXrVl7v9HA7EH_login']")
+    @FindBy(linkText = "Log in")
     private WebElement loginButton;
 
     public HomePage(WebDriver driver) {

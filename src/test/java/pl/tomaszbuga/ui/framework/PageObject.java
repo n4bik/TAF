@@ -50,11 +50,21 @@ public abstract class PageObject {
         By elementByLocator = getByFromWebElement(element);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementByLocator));
     }
+    protected final WebElement waitUntilElementIsVisibleAndReturn(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        By elementByLocator = getByFromWebElement(element);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(elementByLocator));
+    }
 
     protected final void waitUntilElementIsClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         By elementByLocator = getByFromWebElement(element);
         wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));
+    }
+    protected final WebElement waitUntilElementIsClickableAndReturn(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        By elementByLocator = getByFromWebElement(element);
+        return wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));
     }
 
     protected void clickOnWebElement(WebElement clickableElement) {
@@ -82,7 +92,7 @@ public abstract class PageObject {
         input.clear();
     }
 
-    public void selectValueFromDropdown(WebElement dropdown, String valueToSelect) {
+    protected void selectValueFromDropdown(WebElement dropdown, String valueToSelect) {
         Select select = new Select(dropdown);
 
         log.info("Searching for '" + valueToSelect + "' in dropdown");
@@ -93,7 +103,7 @@ public abstract class PageObject {
         }
     }
 
-    public String getSelectedValueFromDropdown(WebElement dropdown) {
+    protected String getSelectedValueFromDropdown(WebElement dropdown) {
         Select select = new Select(dropdown);
         return select.getFirstSelectedOption().getText();
     }

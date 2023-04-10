@@ -35,6 +35,7 @@ public class LoginPage extends PageObject {
         PageFactory.initElements(driver, this);
         isPageLoaded(pageObjectName, loginViaGoogleButton);
     }
+
     @Step("Click login via Google button")
     public LoginPage clickLoginViaGoogleButton() {
         log.info("Click login via Google button");
