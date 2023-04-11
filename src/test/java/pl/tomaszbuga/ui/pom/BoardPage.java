@@ -1,5 +1,6 @@
 package pl.tomaszbuga.ui.pom;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,13 +16,13 @@ public class BoardPage extends PageObject {
     @FindBy(css = "[aria-label='Show menu']")
     private WebElement ellipsisButton;
 
-    @FindBy(partialLinkText = "More")
+    @FindBy(css = ".js-open-more")
     private WebElement showMoreActionsButton;
 
-    @FindBy(partialLinkText = "Close board")
+    @FindBy(css = ".js-close-board")
     private WebElement closeBoardButton;
 
-    @FindBy(css = "input[value='Close']")
+    @FindBy(css = ".js-confirm")
     private WebElement confirmCloseButton;
 
     @FindBy(css = "[data-testid='close-board-delete-board-button']")
@@ -35,18 +36,63 @@ public class BoardPage extends PageObject {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Get board title")
     public String getBoardTitle() {
         waitUntilElementIsVisible(boardTitle);
-        return boardTitle.getText();
+        String boardTitleText = boardTitle.getText();
+        log.info("Get board title: " + boardTitleText);
+        return boardTitleText;
     }
 
-    public DashboardPage removeBoard() {
+    @Step("Open board menu")
+    public BoardPage openBoardMenu() {
+        log.info("Open board menu");
         clickOnWebElement(ellipsisButton);
+        return this;
+    }
+
+    @Step("Click show more actions button")
+    public BoardPage clickShowMoreActionsButton() {
+        log.info("Click show more actions button");
         clickOnWebElement(showMoreActionsButton);
+        return this;
+    }
+
+    @Step("Click close board button")
+    public BoardPage clickCloseBoardButton() {
+        log.info("Click close board button");
         clickOnWebElement(closeBoardButton);
+        return this;
+    }
+
+    @Step("Click confirm close button")
+    public BoardPage clickConfirmCloseButton() {
+        log.info("Click confirm close button");
         clickOnWebElement(confirmCloseButton);
+        return this;
+    }
+
+    @Step("Click permanently remove board button")
+    public BoardPage clickPermanentlyRemoveBoardButton() {
+        log.info("Click permanently remove board button");
         clickOnWebElement(permanentlyRemoveBoardButton);
+        return this;
+    }
+
+    @Step("Click confirm permanently remove button")
+    public DashboardPage clickConfirmPermanentlyRemoveButton() {
+        log.info("Click confirm permanently remove button");
         clickOnWebElement(confirmPermanentlyRemoveButton);
         return new DashboardPage(driver);
+    }
+
+    @Step("Remove board")
+    public DashboardPage removeBoard() {
+        return openBoardMenu()
+                .clickShowMoreActionsButton()
+                .clickCloseBoardButton()
+                .clickConfirmCloseButton()
+                .clickPermanentlyRemoveBoardButton()
+                .clickConfirmPermanentlyRemoveButton();
     }
 }

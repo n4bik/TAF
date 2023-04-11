@@ -10,7 +10,7 @@ import pl.tomaszbuga.ui.framework.PageObject;
 
 @Log4j2
 public class HomePage extends PageObject {
-    @FindBy(linkText = "Log in")
+    @FindBy(css = "a[href='/login']")
     private WebElement loginButton;
 
     public HomePage(WebDriver driver) {

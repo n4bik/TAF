@@ -15,8 +15,6 @@ public class DashboardPageTest extends BaseTest {
     private void setup() {
         homePage = new HomePage(getDriver());
         homePage.openHomePage();
-
-        System.out.println();
     }
 
     @Test
