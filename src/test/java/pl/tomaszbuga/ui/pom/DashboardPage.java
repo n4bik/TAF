@@ -43,14 +43,48 @@ public class DashboardPage extends PageObject {
         return this;
     }
 
+    @Step("Select background: orange")
+    public DashboardPage selectOrangeBackground() {
+        log.info("Select background: orange");
+        clickOnWebElement(orangeBackgroundButton);
+        return this;
+    }
+
+    @Step("Enter new board title {newTitle}")
+    public DashboardPage enterNewBoardTitle(String newTitle) {
+        log.info("Enter new board title: {}", newTitle);
+        enterTextToInput(boardTitleInput, newTitle);
+        return this;
+    }
+
+    @Step("Expand visibility dropdown")
+    public DashboardPage expandVisibilityDropdown() {
+        log.info("Expand visibility dropdown");
+        clickOnWebElement(visibilityDropdown);
+        return this;
+    }
+
+    @Step("Select visibility: private")
+    public DashboardPage selectPrivateVisiblityOption() {
+        log.info("Select visibility: private");
+        clickOnWebElement(privateVisibilityOption);
+        return this;
+    }
+
+    @Step("Click on create board button")
+    public BoardPage clickCreateNewBoardButton() {
+        log.info("Click on create board button");
+        clickOnWebElement(createBoardSubmitButton);
+        return new BoardPage(driver);
+    }
+
     @Step("Enter required data and press Create button")
     public BoardPage enterRequiredData() {
         log.info("Enter required data and press Create button");
-        clickOnWebElement(orangeBackgroundButton);
-        enterTextToInput(boardTitleInput, "TST-A Board");
-        clickOnWebElement(visibilityDropdown);
-        clickOnWebElement(privateVisibilityOption);
-        clickOnWebElement(createBoardSubmitButton);
-        return new BoardPage(driver);
+        return selectOrangeBackground()
+                .enterNewBoardTitle("TST-A Board")
+                .expandVisibilityDropdown()
+                .selectPrivateVisiblityOption()
+                .clickCreateNewBoardButton();
     }
 }

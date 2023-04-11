@@ -15,11 +15,9 @@ public class DashboardPageTest extends BaseTest {
     private void setup() {
         homePage = new HomePage(getDriver());
         homePage.openHomePage();
-
-        System.out.println();
     }
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"})
     public void addNewBoardTest() {
         String expectedTitle = "TST-A Board";
 

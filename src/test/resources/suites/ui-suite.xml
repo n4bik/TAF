@@ -3,6 +3,7 @@
     <test name="UI">
         <classes>
             <class name="pl.tomaszbuga.ui.HomePageTest"/>
+            <class name="pl.tomaszbuga.ui.DashboardPageTest"/>
         </classes>
     </test>
 </suite>
