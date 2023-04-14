@@ -28,6 +28,8 @@ public class DashboardPageTest extends BaseTest {
                 .enterPassword()
                 .clickLoginButton()
                 .clickOnCreateNewBoardButton()
+                .clickStartWithATemplateButton()
+                .selectTemplateByIndex(0)
                 .enterRequiredData()
                 .getBoardTitle();
 
