@@ -20,7 +20,7 @@ public class DashboardPageTest extends BaseTest {
     @Test(groups = {"Smoke", "Regression"})
     public void addNewBoardTest() {
         String expectedTitle = "TST-A Board";
-        System.out.println("test");
+
         String boardTitleFromPage = homePage
                 .clickLoginButton()
                 .enterUsername()
@@ -28,6 +28,8 @@ public class DashboardPageTest extends BaseTest {
                 .enterPassword()
                 .clickLoginButton()
                 .clickOnCreateNewBoardButton()
+                .clickStartWithATemplateButton()
+                .selectTemplateByIndex(0)
                 .enterRequiredData()
                 .getBoardTitle();
 

@@ -39,7 +39,7 @@ public class BoardPage extends PageObject {
     @Step("Get board title")
     public String getBoardTitle() {
         waitUntilElementIsVisible(boardTitle);
-        String boardTitleText = boardTitle.getText();
+        String boardTitleText = getText(boardTitle);
         log.info("Get board title: " + boardTitleText);
         return boardTitleText;
     }
