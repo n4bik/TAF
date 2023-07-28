@@ -1,6 +1,5 @@
 package pl.tomaszbuga.ui.framework;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +23,6 @@ public abstract class BaseTest {
 
     private void setupDriver() {
         ChromeOptions options = new ChromeOptions();
-        WebDriverManager.chromedriver().setup();
 
         options.addArguments(
                 "--headless",

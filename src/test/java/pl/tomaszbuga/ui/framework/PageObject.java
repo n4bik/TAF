@@ -42,25 +42,13 @@ public abstract class PageObject {
         return result;
     }
 
-    protected final void waitUntilElementIsVisible(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
-        By elementByLocator = getByFromWebElement(element);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(elementByLocator));
-    }
-
-    protected final WebElement waitUntilElementIsVisibleAndReturn(WebElement element) {
+    protected final WebElement waitUntilElementIsVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         By elementByLocator = getByFromWebElement(element);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(elementByLocator));
     }
 
-    protected final void waitUntilElementIsClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
-        By elementByLocator = getByFromWebElement(element);
-        wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));
-    }
-
-    protected final WebElement waitUntilElementIsClickableAndReturn(WebElement element) {
+    protected final WebElement waitUntilElementIsClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         By elementByLocator = getByFromWebElement(element);
         return wait.until(ExpectedConditions.elementToBeClickable(elementByLocator));
