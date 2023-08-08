@@ -2,6 +2,7 @@ package pl.tomaszbuga.ui.framework;
 
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -81,13 +82,11 @@ public abstract class PageObject {
 
     protected void clearTextInput(WebElement input) {
         waitUntilElementIsClickable(input);
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-            input.sendKeys(Keys.COMMAND + "A");
-            input.sendKeys(Keys.DELETE);
-        } else {
-            input.sendKeys(Keys.LEFT_CONTROL + "A");
-            input.sendKeys(Keys.DELETE);
-        }
+        Keys modifier = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
+
+        input.sendKeys(modifier + "A");
+        input.sendKeys(Keys.DELETE);
+
         input.clear();
     }
 
