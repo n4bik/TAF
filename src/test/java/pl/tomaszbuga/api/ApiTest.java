@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pl.tomaszbuga.api.entities.apiServer.Body;
 import pl.tomaszbuga.api.entities.apiServer.Comment;
-import pl.tomaszbuga.api.entities.slideshow.Slideshow;
-import pl.tomaszbuga.api.entities.slideshow.SlideshowResponse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,44 +58,6 @@ public class ApiTest {
 
         removeCommentInDatabaseById(commentId);
         assertEquals(commentFromResponse, expectedComment);
-    }
-
-    @Test(description = "Test httpbin z POJO")
-    void apiTestingWithPOJO() {
-        Slideshow slideshow = given()
-                // .log().all() // uncomment for debugging
-                .get("https://httpbin.org/json")
-                .then()
-                .assertThat()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .as(SlideshowResponse.class)
-                .getSlideshow();
-
-        softAssert.assertEquals(slideshow.getAuthor(), "Yours Truly");
-        softAssert.assertEquals(slideshow.getSlides().get(0).getTitle(), "Wake up to WonderWidgets!");
-        softAssert.assertEquals(slideshow.getDate(), "date of publication");
-        softAssert.assertEquals(slideshow.getTitle(), "Sample Slide Show");
-        softAssert.assertAll();
-    }
-
-    @Test(description = "Test httpbin bez POJO")
-    void apiTestingWithoutPOJO() {
-        Slideshow slideshow = given()
-                // .log().all() // uncomment for debugging
-                .get("https://httpbin.org/json")
-                .then()
-                .assertThat()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .response().as(SlideshowResponse.class).getSlideshow();
-
-        SoftAssert softAssert = new SoftAssert();
-
-        softAssert.assertEquals(slideshow.getAuthor(), "Yours Truly");
-        softAssert.assertEquals(slideshow.getSlides().get(0).getTitle(), "Wake up to WonderWidgets!");
-        softAssert.assertEquals(slideshow.getDate(), "date of publication");
-        softAssert.assertAll();
     }
 
     private static Comment generateNewComment(String title, String description, List<String> tags, int commentId, int postId) {

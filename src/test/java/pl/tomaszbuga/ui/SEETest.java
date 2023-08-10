@@ -5,12 +5,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.tomaszbuga.ui.pom.StaleElementReferenceExceptionExamplePage;
+import pl.tomaszbuga.ui.utils.DbConnections;
 
+import java.sql.SQLException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -145,6 +150,32 @@ public class SEETest {
         actions
                 .release(canvas)
                 .build().perform();
+    }
+
+    @Test
+    public void implicitWaitTest() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement landscape = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("landscape")));
+        Assert.assertTrue(landscape.isDisplayed());
+    }
+
+    @Test
+    public void testScrollBy() {
+//        String script = "window.scrollBy(0, 1000)";
+//        js.executeScript(script);
+
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebElement lastElement = driver.findElement(By.cssSelector("p:last-child"));
+        String script = "arguments[0].scrollIntoView();";
+        js.executeScript(script, lastElement);
+    }
+
+    @Test
+    public void dbTest() {
+        DbConnections.resultSetTest();
     }
 
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
+
 @Log4j2
 public abstract class BaseTest {
     private WebDriver driver;
@@ -25,17 +27,18 @@ public abstract class BaseTest {
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments(
-                "--headless",
+                /*"--headless",
                 "--disable-gpu",
                 "--window-size=1920,1200",
                 "--ignore-certificate-errors",
                 "--disable-extensions",
                 "--no-sandbox",
-                "--disable-dev-shm-usage",
+                "--disable-dev-shm-usage",*/
                 "--remote-allow-origins=*"
         );
 
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     protected WebDriver getDriver() {
