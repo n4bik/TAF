@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
+import static pl.tomaszbuga.ui.utils.AllureEnvironmentWriter.createEnvironmentPropertiesFile;
+
 @Log4j2
 public abstract class BaseTest {
     private WebDriver driver;
@@ -16,6 +18,7 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setupWebDriver() {
         setupDriver();
+        createEnvironmentPropertiesFile(getDriver());
     }
 
     @AfterMethod(alwaysRun = true)
@@ -27,13 +30,13 @@ public abstract class BaseTest {
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments(
-                /*"--headless",
+                "--headless",
                 "--disable-gpu",
                 "--window-size=1920,1200",
                 "--ignore-certificate-errors",
                 "--disable-extensions",
                 "--no-sandbox",
-                "--disable-dev-shm-usage",*/
+                "--disable-dev-shm-usage",
                 "--remote-allow-origins=*"
         );
 

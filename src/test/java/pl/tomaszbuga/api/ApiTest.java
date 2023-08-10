@@ -54,7 +54,7 @@ public class ApiTest {
         int postId = 1;
 
         Comment expectedComment = generateNewComment(commentTitle, commentDescription, commentTags, commentId, postId);
-        Comment commentFromResponse = addNewComment(expectedComment);
+        Comment commentFromResponse = postNewComment(expectedComment);
 
         removeCommentInDatabaseById(commentId);
         assertEquals(commentFromResponse, expectedComment);
@@ -75,7 +75,7 @@ public class ApiTest {
         return expectedComment;
     }
 
-    private static Comment addNewComment(Comment expectedComment) throws JsonProcessingException {
+    private static Comment postNewComment(Comment expectedComment) throws JsonProcessingException {
         return given()
                 // .log().all() // uncomment for debugging
                 .header("Content-Type", "application/json")
