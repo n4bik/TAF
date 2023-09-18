@@ -76,7 +76,7 @@ public abstract class PageObject {
     }
 
     protected String getText(WebElement element) {
-        waitUntilElementIsClickable(element);
+        waitUntilElementIsVisible(element);
         return element.getText();
     }
 

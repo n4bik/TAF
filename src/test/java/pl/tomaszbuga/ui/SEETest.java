@@ -1,5 +1,6 @@
 package pl.tomaszbuga.ui;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,11 +15,12 @@ import org.testng.annotations.Test;
 import pl.tomaszbuga.ui.pom.StaleElementReferenceExceptionExamplePage;
 import pl.tomaszbuga.ui.utils.DbConnections;
 
-import java.sql.SQLException;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class SEETest {
     private WebDriver driver;
 
@@ -35,6 +37,22 @@ public class SEETest {
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
         driver.quit();
+    }
+
+    @Test
+    public void testUploadFile() {
+        String initUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
+
+        driver.get(initUrl);
+        WebElement inputFile = driver.findElement(By.name("my-file"));
+        Path file = Path.of("assets", "test", "test.txt");
+        String absolutePathToFile = file.toAbsolutePath().toString();
+
+        log.info("Using file {} in file upload", absolutePathToFile);
+        inputFile.sendKeys(absolutePathToFile);
+        driver.findElement(By.tagName("form")).submit();
+
+        Assert.assertNotEquals(driver.getCurrentUrl(), initUrl);
     }
 
     @Test

@@ -7,8 +7,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.time.Duration;
-
 import static pl.tomaszbuga.ui.utils.AllureEnvironmentWriter.createEnvironmentPropertiesFile;
 
 @Log4j2
@@ -16,13 +14,13 @@ public abstract class BaseTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setupWebDriver() {
+    private void setupWebDriver() {
         setupDriver();
         createEnvironmentPropertiesFile(getDriver());
     }
 
     @AfterMethod(alwaysRun = true)
-    public void closeBrowser() {
+    private void closeBrowser() {
         driver.quit();
     }
 
@@ -41,7 +39,6 @@ public abstract class BaseTest {
         );
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     protected WebDriver getDriver() {
